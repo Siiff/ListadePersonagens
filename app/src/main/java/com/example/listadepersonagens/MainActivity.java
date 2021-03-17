@@ -13,14 +13,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{    
 
+     //Aula 11/03
+    //criando um override para a lista de personagens
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //lista de array
         List<String> personagens = new ArrayList<>(Arrays.asList("Alex","Pedro","João","Dom Pedro II Imperador Delas"));
 
         ListView listaDePersonagens = findViewById(R.id.lista_personagens);
+        //setando os personagens na lista(in app)
         listaDePersonagens.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personagens));
+
 
         /*TextView primeiroPersonagem = findViewById(R.id.Perso1);
         TextView segundoPersonagem = findViewById(R.id.Perso2);
