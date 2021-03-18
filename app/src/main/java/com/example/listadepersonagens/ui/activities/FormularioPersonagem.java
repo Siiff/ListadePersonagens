@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.listadepersonagens.R;
+
 public class FormularioPersonagem extends AppCompatActivity {
 
     @Override
