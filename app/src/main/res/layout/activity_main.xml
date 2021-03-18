@@ -5,14 +5,16 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/iconeAdd"
         android:layout_width="230dp"
         android:layout_height="200dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:clickable="true" />
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_addperson"/>
 
     <ListView
         android:id="@+id/lista_personagens"
