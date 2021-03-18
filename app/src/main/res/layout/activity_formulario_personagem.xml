@@ -14,6 +14,7 @@
         android:ems="10"
         android:hint="Insira seu nome"
         android:inputType="textPersonName"
+        android:singleLine="true"
         android:textAlignment="viewStart"
         android:textStyle="bold" />
 
@@ -24,6 +25,7 @@
         android:ems="10"
         android:hint="Insira Sua altura"
         android:inputType="numberDecimal"
+        android:singleLine="true"
         android:textAlignment="viewStart"
         android:textStyle="bold" />
 
@@ -34,6 +36,7 @@
         android:ems="10"
         android:hint="Insira sua data de nascimento"
         android:inputType="date"
+        android:singleLine="true"
         android:textAlignment="viewStart"
         android:textStyle="bold" />
 
