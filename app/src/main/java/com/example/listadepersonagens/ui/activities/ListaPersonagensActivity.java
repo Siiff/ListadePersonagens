@@ -1,4 +1,4 @@
-package com.example.listadepersonagens;
+package com.example.listadepersonagens.ui.activities;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -6,19 +6,21 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.listadepersonagens.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity{    
+public class ListaPersonagensActivity extends AppCompatActivity{
 
      //Aula 11/03
     //criando um override para a lista de personagens
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_lista_personagem);
         //lista de array
         List<String> personagens = new ArrayList<>(Arrays.asList("Alex","Pedro","João","Dom Pedro II Imperador Delas"));
 

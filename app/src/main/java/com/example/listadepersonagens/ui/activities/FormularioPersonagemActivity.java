@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.listadepersonagens.R;
 
-public class FormularioPersonagem extends AppCompatActivity {
+public class FormularioPersonagemActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
