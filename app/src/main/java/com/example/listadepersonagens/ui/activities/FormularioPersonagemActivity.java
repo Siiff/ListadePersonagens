@@ -19,6 +19,8 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_personagem);
+        //Setando o titulo
+        setTitle("Formulário de Personagens");
 
         //criando um banco de data do personagem
         PersonagemDAO dao = new PersonagemDAO();

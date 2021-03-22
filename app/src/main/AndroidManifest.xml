@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ListadePersonagens">
+        <!--//activity do formulario//-->
         <activity android:name=".ui.activities.FormularioPersonagemActivity">
-            <intent-filter>
+            <!--Intent comentado para avitar ele de abrir primeiro-->
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            </intent-filter>-->
         </activity>
+        <!--//Activity da lista//-->
         <activity android:name=".ui.activities.ListaPersonagensActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

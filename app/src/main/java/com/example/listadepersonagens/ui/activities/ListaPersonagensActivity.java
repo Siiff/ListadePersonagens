@@ -1,6 +1,8 @@
 package com.example.listadepersonagens.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.listadepersonagens.R;
 import com.example.listadepersonagens.dao.PersonagemDAO;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,10 +25,20 @@ public class ListaPersonagensActivity extends AppCompatActivity{
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_personagem);
+        //Setando o titulo
+        setTitle("Lista de Personagens");
 
         //referenciando o index de dao para poder utiliza-lo//
         PersonagemDAO dao = new PersonagemDAO();
 
+        //pegando o floatingActionbutton//
+        FloatingActionButton botaoNovoPersonagem = findViewById(R.id.iconeAdd);
+        botaoNovoPersonagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ListaPersonagensActivity.this, FormularioPersonagemActivity.class) );
+            }
+        });
 
         //lista de array
         //List<String> personagens = new ArrayList<>(Arrays.asList("Alex","Pedro","João","Dom Pedro II Imperador Delas"));
