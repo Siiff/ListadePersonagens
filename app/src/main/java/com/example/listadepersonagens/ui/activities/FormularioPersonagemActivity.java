@@ -2,6 +2,7 @@ package com.example.listadepersonagens.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.listadepersonagens.R;
+import com.example.listadepersonagens.dao.PersonagemDAO;
 import com.example.listadepersonagens.model.Personagem;
 
 public class FormularioPersonagemActivity extends AppCompatActivity {
@@ -17,6 +19,9 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_personagem);
+
+        //criando um banco de data do personagem
+        PersonagemDAO dao = new PersonagemDAO();
 
         //Pegando os ID's dos campos//
         EditText campoNome = findViewById(R.id.editTextName);
@@ -37,13 +42,19 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
 
                 Personagem personagemsalvo = new Personagem(nome,altura,nascimento);
 
-                //Toast utilizando os gets para pegar as variaveis//
-                Toast.makeText(FormularioPersonagemActivity.this,
-                        personagemsalvo.getNome() + " - " + personagemsalvo.getAltura() + " - " +
-                                personagemsalvo.getNascimento(), Toast.LENGTH_SHORT).show();
+                //utilizando o metodo salvar para salvar o personagem nesse banco
+                dao.salvar(personagemsalvo);
+
+                //abrindo nova activity//
+                    startActivity(new Intent(FormularioPersonagemActivity.this, ListaPersonagensActivity.class) );
 
                 //Juntando tudo e instanciando o personagem//
                 new Personagem(nome,altura,nascimento);
+
+                //Toast utilizando os gets para pegar as variaveis//
+                /*Toast.makeText(FormularioPersonagemActivity.this,
+                        personagemsalvo.getNome() + " - " + personagemsalvo.getAltura() + " - " +
+                                personagemsalvo.getNascimento(), Toast.LENGTH_SHORT).show();*/
 
                 //checando se o botão Enviar esta funcionando e criando sua função através do java//
                 //Toast.makeText(FormularioPersonagemActivity.this,"Estou funcionando", Toast.LENGTH_SHORT).show();
