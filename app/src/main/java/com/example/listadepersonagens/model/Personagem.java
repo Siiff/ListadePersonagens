@@ -1,5 +1,7 @@
 package com.example.listadepersonagens.model;
 
+import androidx.annotation.NonNull;
+
 public class Personagem {
     //pegando as variaveis//
     private final String nome;
@@ -21,6 +23,7 @@ public class Personagem {
     public String getNascimento() {return nascimento;}*/
 
     //covertendo o nome para um string para exibição//
+    @NonNull
     @Override
     public String toString(){return nome;
     }

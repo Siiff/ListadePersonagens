@@ -2,7 +2,9 @@ package com.example.listadepersonagens.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.listadepersonagens.R;
 import com.example.listadepersonagens.dao.PersonagemDAO;
+import com.example.listadepersonagens.model.Personagem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -28,8 +31,6 @@ public class ListaPersonagensActivity extends AppCompatActivity{
         //Setando o titulo
         setTitle("Lista de Personagens");
 
-        //referenciando o index de dao para poder utiliza-lo//
-        PersonagemDAO dao = new PersonagemDAO();
 
         //pegando o floatingActionbutton//
         FloatingActionButton botaoNovoPersonagem = findViewById(R.id.iconeAdd);
@@ -43,9 +44,7 @@ public class ListaPersonagensActivity extends AppCompatActivity{
         //lista de array
         //List<String> personagens = new ArrayList<>(Arrays.asList("Alex","Pedro","João","Dom Pedro II Imperador Delas"));
 
-        ListView listaDePersonagens = findViewById(R.id.lista_personagens);
-        //setando os personagens na lista(in app)
-        listaDePersonagens.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
+
 
 
         /*TextView primeiroPersonagem = findViewById(R.id.Perso1);
@@ -54,6 +53,42 @@ public class ListaPersonagensActivity extends AppCompatActivity{
         primeiroPersonagem.setText(personagens.get(0));
         segundoPersonagem.setText(personagens.get(2));
         terceiroPersonagem.setText(personagens.get(3));*/
+    }
+
+
+    //Fazendo uma proteção para os dados, assim eles não são apagados ao dar Back//
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        //referenciando o index de dao para poder utiliza-lo//
+        PersonagemDAO dao = new PersonagemDAO();
+
+        ListView listaDePersonagens = findViewById(R.id.lista_personagens);
+        //referenciando o dao.todos() como personagens para poder acessar os dados
+        List<Personagem> personagens = dao.todos();
+        //setando os personagens na lista(in app)
+        listaDePersonagens.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personagens));
+
+        listaDePersonagens.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            //Metodo para seleção do personagem//
+            @Override
+            public void onItemClick (AdapterView<?> adapterView, View view, int posicao, long id){
+                Personagem personagemEscolhido = personagens.get(posicao);
+                //Fazendo uma entrada com os dados especificos no LogCat//
+                //Log.i("Personagem:",""+ posicao );
+                //Entrando no formulário novamente
+                Intent indoParaFormulario = new Intent (ListaPersonagensActivity.this,FormularioPersonagemActivity.class);
+                startActivity(indoParaFormulario);
+
+
+
+
+
+            }
+        });
+
+
     }
 
 }
