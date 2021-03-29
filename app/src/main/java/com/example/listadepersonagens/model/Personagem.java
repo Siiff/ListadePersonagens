@@ -2,7 +2,9 @@ package com.example.listadepersonagens.model;
 
 import androidx.annotation.NonNull;
 
-public class Personagem {
+import java.io.Serializable;
+
+public class Personagem implements Serializable {
     //pegando as variaveis//
     private final String nome;
     private final String altura;

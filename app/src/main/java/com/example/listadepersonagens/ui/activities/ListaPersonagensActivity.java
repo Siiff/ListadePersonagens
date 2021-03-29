@@ -22,6 +22,9 @@ import java.util.List;
 
 public class ListaPersonagensActivity extends AppCompatActivity{
 
+    //referenciando o index de dao para poder utiliza-lo//
+    private final PersonagemDAO dao = new PersonagemDAO();
+
      //Aula 11/03
     //criando um override para a lista de personagens
     @Override
@@ -30,6 +33,8 @@ public class ListaPersonagensActivity extends AppCompatActivity{
         setContentView(R.layout.activity_lista_personagem);
         //Setando o titulo
         setTitle("Lista de Personagens");
+        dao.salvar(new Personagem("Dom Pedro II, Rei Delas", "1,90","03/03/73"));
+        dao.salvar(new Personagem("Dom Casmurro, o odiado por elas", "1,74","13/12/73"));
 
 
         //pegando o floatingActionbutton//
@@ -40,14 +45,11 @@ public class ListaPersonagensActivity extends AppCompatActivity{
                 startActivity(new Intent(ListaPersonagensActivity.this, FormularioPersonagemActivity.class) );
             }
         });
-
+        /* Array Comentado
         //lista de array
         //List<String> personagens = new ArrayList<>(Arrays.asList("Alex","Pedro","João","Dom Pedro II Imperador Delas"));
 
-
-
-
-        /*TextView primeiroPersonagem = findViewById(R.id.Perso1);
+        TextView primeiroPersonagem = findViewById(R.id.Perso1);
         TextView segundoPersonagem = findViewById(R.id.Perso2);
         TextView terceiroPersonagem = findViewById(R.id.Perso3);
         primeiroPersonagem.setText(personagens.get(0));
@@ -61,8 +63,7 @@ public class ListaPersonagensActivity extends AppCompatActivity{
     protected void onResume(){
         super.onResume();
 
-        //referenciando o index de dao para poder utiliza-lo//
-        PersonagemDAO dao = new PersonagemDAO();
+
 
         ListView listaDePersonagens = findViewById(R.id.lista_personagens);
         //referenciando o dao.todos() como personagens para poder acessar os dados
@@ -75,12 +76,12 @@ public class ListaPersonagensActivity extends AppCompatActivity{
             @Override
             public void onItemClick (AdapterView<?> adapterView, View view, int posicao, long id){
                 Personagem personagemEscolhido = personagens.get(posicao);
-                //Fazendo uma entrada com os dados especificos no LogCat//
+                /*//Fazendo uma entrada com os dados especificos no LogCat//
                 //Log.i("Personagem:",""+ posicao );
-                //Entrando no formulário novamente
+                //Entrando no formulário novamente*/
                 Intent indoParaFormulario = new Intent (ListaPersonagensActivity.this,FormularioPersonagemActivity.class);
+                indoParaFormulario.putExtra("personagem", personagemEscolhido);
                 startActivity(indoParaFormulario);
-
 
 
 
