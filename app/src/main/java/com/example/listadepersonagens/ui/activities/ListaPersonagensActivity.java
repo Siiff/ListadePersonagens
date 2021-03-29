@@ -34,7 +34,7 @@ public class ListaPersonagensActivity extends AppCompatActivity{
         //Setando o titulo
         setTitle("Lista de Personagens");
         dao.salvar(new Personagem("Dom Pedro II, Rei Delas", "1,90","03/03/73"));
-        dao.salvar(new Personagem("Dom Casmurro, o odiado por elas", "1,74","13/12/73"));
+        //dao.salvar(new Personagem("Dom Casmurro, o odiado por elas", "1,74","13/12/73"));
 
 
         //pegando o floatingActionbutton//
@@ -57,13 +57,10 @@ public class ListaPersonagensActivity extends AppCompatActivity{
         terceiroPersonagem.setText(personagens.get(3));*/
     }
 
-
     //Fazendo uma proteção para os dados, assim eles não são apagados ao dar Back//
     @Override
     protected void onResume(){
         super.onResume();
-
-
 
         ListView listaDePersonagens = findViewById(R.id.lista_personagens);
         //referenciando o dao.todos() como personagens para poder acessar os dados
@@ -82,9 +79,6 @@ public class ListaPersonagensActivity extends AppCompatActivity{
                 Intent indoParaFormulario = new Intent (ListaPersonagensActivity.this,FormularioPersonagemActivity.class);
                 indoParaFormulario.putExtra("personagem", personagemEscolhido);
                 startActivity(indoParaFormulario);
-
-
-
 
             }
         });
