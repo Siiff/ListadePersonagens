@@ -18,6 +18,11 @@ public class Personagem implements Serializable {
         this.nascimento=nascimento;
     }
 
+    //esse construtor vazio serve para caso o usuario insira um campo vazio
+    public Personagem (){
+
+    }
+
     public String getNome() {
         return nome;
     }
@@ -41,13 +46,6 @@ public class Personagem implements Serializable {
     public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
-
-    /*
-    //pegando as variaveis//
-    //Desabilitado pois n estamos mais usando o toast//
-    public String getNome() {return nome;}
-    public String getAltura() {return altura;}
-    public String getNascimento() {return nascimento;}*/
 
     //covertendo o nome para um string para exibição//
     @NonNull

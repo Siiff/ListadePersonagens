@@ -1,7 +1,5 @@
 package com.example.listadepersonagens.dao;
 
-import android.app.Person;
-
 import com.example.listadepersonagens.model.Personagem;
 
 import java.util.ArrayList;
@@ -14,11 +12,9 @@ public class PersonagemDAO {
     private static int contadorDeId = 1;
 
     public void salvar (Personagem personagemSalvo){
-
         personagemSalvo.setId(contadorDeId);
         personagens.add(personagemSalvo);
         contadorDeId++;
-
     }
 
     //Pedaço do código voltado a edição do personagem//
@@ -27,7 +23,6 @@ public class PersonagemDAO {
         for (Personagem p: personagens){
             if (p.getId() == personagem.getId()) {
                 personagemEscolhido = p;
-
             }
         }
         if(personagemEscolhido != null){
