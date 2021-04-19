@@ -1,5 +1,7 @@
 package com.example.listadepersonagens.ui.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -57,22 +59,51 @@ public class ListaPersonagensActivity extends AppCompatActivity{
     @Override
     protected void onResume(){
         super.onResume();
+        atualizaPersonagem();
+    }
+
+    private void atualizaPersonagem() {
         adapter.clear(); //Limpando a Lista e atualizando
         adapter.addAll(dao.todos());
     }
+
+    private void remove (Personagem personagem){
+        dao.remove(personagem);
+        adapter.remove(personagem);
+    }
+
     @Override //Criando menu de contexto para remoção do personagem
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add("Remover"); // se a pessoa clicar novamente no remover, o personagem é removido
+        getMenuInflater().inflate(R.menu.activity_lista_personagem_menu, menu);
     }
     @Override //Código para remoção do personagem escolhido
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        //utilizando o adapter para pegar o personagem na lista
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Personagem personagemEscolhido = adapter.getItem(menuInfo.position);
-        adapter.remove(personagemEscolhido);
+        return configuraMenu(item);
+    }
+
+    private boolean configuraMenu(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.activity_lista_personagem_menu_remover){
+        //Dialog perguntando se quer mesmo excluir o personagem
+        new AlertDialog.Builder(this)
+                .setTitle("Removendo Personagem")
+                .setMessage("Deseja Mesmo Remover?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        //utilizando o adapter para pegar o personagem na lista
+                        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                        Personagem personagemEscolhido = adapter.getItem(menuInfo.position);
+                        remove(personagemEscolhido);
+                    }
+            })
+                .setNegativeButton("Não",null)
+                .show();
+        }
         return super.onContextItemSelected(item);
     }
+
     private void configuraLista() {
         ListView listaDePersonagens = findViewById(R.id.lista_personagens);
         listaDePersonagens(listaDePersonagens); //Metodo Para Setar o personagem na lista

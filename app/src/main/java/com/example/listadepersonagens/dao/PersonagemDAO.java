@@ -1,5 +1,7 @@
 package com.example.listadepersonagens.dao;
 
+import android.app.Person;
+
 import com.example.listadepersonagens.model.Personagem;
 
 import java.util.ArrayList;
@@ -39,6 +41,13 @@ public class PersonagemDAO {
 
     public List<Personagem> todos(){
         return new ArrayList<>(personagens);
+    }
+
+    public void remove (Personagem personagem){
+        Personagem personagemDevolvido = buscaPersonagemID(personagem);
+        if(personagemDevolvido!=null){
+            personagens.remove(personagemDevolvido);
+        }
     }
 
 }
