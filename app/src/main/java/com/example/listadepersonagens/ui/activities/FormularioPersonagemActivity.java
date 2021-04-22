@@ -2,6 +2,7 @@ package com.example.listadepersonagens.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.listadepersonagens.R;
 import com.example.listadepersonagens.dao.PersonagemDAO;
 import com.example.listadepersonagens.model.Personagem;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import static com.example.listadepersonagens.ui.activities.ConstantesActivities.CHAVE_PERSONAGEM;
 
@@ -27,6 +30,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_formulario_personagem_menu_salvar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +84,15 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome = findViewById(R.id.editTextName);
         campoAltura = findViewById(R.id.editTextAltura);
         campoNascimento = findViewById(R.id.editTextNascimento);
+
+        SimpleMaskFormatter smfAltura = new SimpleMaskFormatter ("N,NN");
+        MaskTextWatcher mtwAltura =  new MaskTextWatcher(campoAltura, smfAltura);
+        campoAltura.addTextChangedListener(mtwAltura);
+
+        SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter ("NN/NN/NN");
+        MaskTextWatcher mtwNascimento =  new MaskTextWatcher(campoNascimento, smfNascimento);
+        campoNascimento.addTextChangedListener(mtwNascimento);
+
     }
     private void preencherPersonagem(){
         //Convertendo o texto dos campos em strings//
